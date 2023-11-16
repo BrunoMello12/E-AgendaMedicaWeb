@@ -1,33 +1,48 @@
 <div class="row gap-3">
-  <h1 class="p-0 fw-light">Gerencie o seu dia-a-dia com a nossa ajuda.</h1>
+  <h1 class="p-0 fw-light">Gerencie sua rotina médica com a nossa ajuda.</h1>
 
   <mat-card 
   appCardHover 
   class="col-12 col-md-6 col-lg-3 d-grid gap-2"
-  routerLink="/categorias/listar"
+  routerLink="/medicos/listar"
   >
     <mat-card-header>
-      <mat-card-title>Categorias</mat-card-title>
-      <mat-icon class="ms-auto">label</mat-icon>
+      <mat-card-title>Medicos</mat-card-title>
+      <mat-icon class="ms-auto">person_add</mat-icon>
     </mat-card-header>
 
     <mat-card-content>
-      <span>Crie categorias para organizar suas notas.</span>
+      <span>Gerencie os profissionais de saúde que cuidam da sua jornada médica com facilidade.</span>
     </mat-card-content>
   </mat-card>
 
   <mat-card 
   appCardHover 
   class="col-12 col-md-6 col-lg-3 d-grid gap-2"
-  routerLink="/notas/listar"
+  routerLink="/consultas/listar"
   >
     <mat-card-header>
-      <mat-card-title>Notas</mat-card-title>
-      <mat-icon class="ms-auto">collections_bookmark</mat-icon>
+      <mat-card-title>Consultas</mat-card-title>
+      <mat-icon class="ms-auto">events</mat-icon>
     </mat-card-header>
 
     <mat-card-content>
-      <span>As notas ajudam você a organizar seu dia-a-dia de forma prática.</span>
+      <span>Registre suas consultas médicas e mantenha-se informado sobre seus compromissos de saúde.</span>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card 
+  appCardHover 
+  class="col-12 col-md-6 col-lg-3 d-grid gap-2"
+  routerLink="/cirurgias/listar"
+  >
+    <mat-card-header>
+      <mat-card-title>Cirurgias</mat-card-title>
+      <mat-icon class="ms-auto">medical_services</mat-icon>
+    </mat-card-header>
+
+    <mat-card-content>
+      <span>Organize e acompanhe seus procedimentos cirúrgicos de forma simples e eficaz.</span>
     </mat-card-content>
   </mat-card>
 </div>

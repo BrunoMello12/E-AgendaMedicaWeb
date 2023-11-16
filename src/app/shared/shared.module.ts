@@ -13,10 +13,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [CardHoverDirective],
-  imports: [MatCardModule],
   exports: [
     CommonModule,
     ReactiveFormsModule,
+    CardHoverDirective,
     MatCardModule,
     MatChipsModule,
     MatIconModule,
@@ -24,7 +24,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatTooltipModule,
     MatInputModule,
-    CardHoverDirective,
-  ]
+  ],
 })
 export class SharedModule { }

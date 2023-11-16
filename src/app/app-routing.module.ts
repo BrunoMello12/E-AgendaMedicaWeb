@@ -7,6 +7,13 @@ const routes: Routes = [
     redirectTo: 'dashboard',
     pathMatch: 'full',
   },
+  {
+    path: 'medicos',
+    loadChildren: () =>
+      import('./views/medicos/medicos.module').then(
+        (m) => m.MedicosModule
+      ),
+  },
 ];
 
 @NgModule({
