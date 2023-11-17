@@ -1,14 +1,14 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
-import { Observable } from "rxjs";
+import { Observable, map, tap } from "rxjs";
 import { FormsMedicoViewModel } from "../models/formsMedicoViewModel";
 import { VisualizarMedicoViewModel } from "../models/visualizarMedicoViewModel";
 import { ListarMedicoViewModel } from "../models/listarMedicoViewModel";
 
 @Injectable()
 export class MedicosService {
-private MEDICOS_API_URL = `/medicos`;
+private MEDICOS_API_URL = `${environment.API_URL}/medicos`;
 
   constructor(private http: HttpClient) {}
 
@@ -35,6 +35,7 @@ private MEDICOS_API_URL = `/medicos`;
   }
 
   selecionarTodos(): Observable<ListarMedicoViewModel[]> {
-    return this.http.get<ListarMedicoViewModel[]>(this.MEDICOS_API_URL);
+    return this.http.get<any>(this.MEDICOS_API_URL)
+    .pipe(map(res => res.dados));
   }
 }

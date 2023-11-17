@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListarMedicosComponent } from './listar-medicos/listar-medicos.component';
 import { MedicosService } from './services/medicos.service';
 
-// const listarMedicosResolver = () => {
-//   return inject(MedicosService).selecionarTodos();
-// };
+const listarMedicosResolver = () => {
+  return inject(MedicosService).selecionarTodos();
+};
 
 const routes: Routes = [
   {
@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: 'listar',
     component: ListarMedicosComponent,
-    // resolve: { medicos: listarMedicosResolver },
+    resolve: { medicos: listarMedicosResolver },
   },
 ];
 

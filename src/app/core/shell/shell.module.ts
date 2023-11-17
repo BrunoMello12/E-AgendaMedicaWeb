@@ -4,6 +4,7 @@ import { ShellComponent } from './shell.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   ],
   imports: [
     CommonModule,
+    AppRoutingModule,
     MatToolbarModule,
     MatSidenavModule,
     SharedModule
