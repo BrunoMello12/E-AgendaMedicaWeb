@@ -1,1 +1,59 @@
-<p>inserir-medico works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-10 col-lg-6 mx-auto mt-5">
+      <div class="text-md-start">
+        <h1 class="fs-2 indigo-pink-text">Inserir Novo Médico</h1>
+      </div>
+
+        <form [formGroup]="form!" (ngSubmit)="gravar()" class="d-grid mt-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input 
+            [ngClass]="campoEstaInvalido('nome') ? 'is-invalid' : ''" 
+            type="text" 
+            formControlName="nome" 
+            matInput />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Telefone</mat-label>
+            <input 
+            [ngClass]="campoEstaInvalido('telefone') ? 'is-invalid' : ''" 
+            type="text" 
+            formControlName="telefone" 
+            matInput />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>CRM</mat-label>
+            <input 
+            [ngClass]="campoEstaInvalido('crm') ? 'is-invalid' : ''" 
+            type="text" 
+            formControlName="crm" 
+            matInput />
+          </mat-form-field>
+
+          <div class="d-flex justify-content-end gap-2 mt-5">
+            <button
+              type="submit"
+              class="py-3 px-5"
+              color="primary"
+              mat-raised-button
+            >
+              Salvar
+            </button>
+            <button
+              type="button"
+              routerLink="/medicos/listar"
+              class="py-3 px-5"
+              color="warn"
+              mat-stroked-button
+            >
+              Voltar
+            </button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+

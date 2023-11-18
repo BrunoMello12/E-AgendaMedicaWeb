@@ -10,6 +10,7 @@ import { MedicosService } from './services/medicos.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import 'src/app/extensions/form-group.extensions';
 
 
 @NgModule({

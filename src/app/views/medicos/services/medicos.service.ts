@@ -16,22 +16,23 @@ private MEDICOS_API_URL = `${environment.API_URL}/medicos`;
     return this.http.post<FormsMedicoViewModel>(this.MEDICOS_API_URL, medico);
   }
 
-  editar(id: number, Medico: FormsMedicoViewModel): Observable<FormsMedicoViewModel> {
+  editar(id: string, Medico: FormsMedicoViewModel): Observable<FormsMedicoViewModel> {
     const url = `${this.MEDICOS_API_URL}/${id}`;
 
     return this.http.put<FormsMedicoViewModel>(url, Medico);
   }
 
-  excluir(id: number): Observable<any> {
+  excluir(id: string): Observable<any> {
     const url = `${this.MEDICOS_API_URL}/${id}`;
 
     return this.http.delete<VisualizarMedicoViewModel>(url);
   }
 
-  selecionarPorId(id: number): Observable<VisualizarMedicoViewModel> {
-    const url = `${this.MEDICOS_API_URL}/${id}?_expand=medico`;
+  selecionarPorId(id: string): Observable<VisualizarMedicoViewModel> {
+    const url = `${this.MEDICOS_API_URL}/visualizacao-completa/${id}`;
 
-    return this.http.get<VisualizarMedicoViewModel>(url);
+    return this.http.get<any>(url)
+    .pipe(map(res => res.dados));
   }
 
   selecionarTodos(): Observable<ListarMedicoViewModel[]> {

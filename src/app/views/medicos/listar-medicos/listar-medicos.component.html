@@ -25,8 +25,11 @@
         </mat-card-header>
 
         <mat-card-content class="mt-3 fs-6">
-          <span>{{ medico.telefone }}</span>
-          <span>{{ medico.disponivel }}</span>
+          <span>Telefone: {{ medico.telefone }}</span>
+        </mat-card-content>
+
+        <mat-card-content class="mt-3 fs-6">
+          <span>Situação: {{ medico.disponivel ? 'Disponível' : 'Indisponível' }}</span>
         </mat-card-content>
 
         <mat-card-actions class="pe-0" align="end">
