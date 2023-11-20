@@ -1,1 +1,75 @@
-<p>editar-consulta works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-10 col-lg-6 mx-auto mt-5">
+      <div class="text-md-start">
+        <h1 class="fs-2 indigo-pink-text">Editar Consulta</h1>
+      </div>
+
+        <form [formGroup]="form!" (ngSubmit)="gravar()" class="d-grid mt-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Titulo</mat-label>
+            <input 
+            [ngClass]="campoEstaInvalido('titulo') ? 'is-invalid' : ''" 
+            type="text" 
+            formControlName="titulo" 
+            matInput />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Hora Início</mat-label>
+            <input 
+            [ngClass]="campoEstaInvalido('horaInicio') ? 'is-invalid' : ''" 
+            type="text" 
+            formControlName="horaInicio" 
+            matInput />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Hora Término</mat-label>
+            <input 
+              [ngClass]="campoEstaInvalido('horaTermino') ? 'is-invalid' : ''" 
+              type="text" 
+              formControlName="horaTermino" 
+              matInput 
+              placeholder="HH:mm"
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Médico</mat-label>
+            <mat-select formControlName="medicoId">
+              <mat-option
+                [value]="medico.id"
+                *ngFor="let medico of medicos$ | async"
+              >
+                {{ medico.nome }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="d-flex justify-content-end gap-2 mt-5">
+            <button
+              type="submit"
+              class="py-3 px-5"
+              color="primary"
+              mat-raised-button
+            >
+              Salvar
+            </button>
+            <button
+              type="button"
+              routerLink="/consultas/listar"
+              class="py-3 px-5"
+              color="warn"
+              mat-stroked-button
+            >
+              Voltar
+            </button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+

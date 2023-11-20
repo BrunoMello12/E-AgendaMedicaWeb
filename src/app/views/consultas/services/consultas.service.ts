@@ -29,8 +29,15 @@ private CONSULTAS_API_URL = `${environment.API_URL}/consultas`;
     return this.http.delete<VisualizarConsultaViewModel>(url);
   }
 
-  selecionarPorId(id: string): Observable<VisualizarConsultaViewModel> {
+  selecionarPorIdCompleto(id: string): Observable<VisualizarConsultaViewModel> {
     const url = `${this.CONSULTAS_API_URL}/visualizacao-completa/${id}`;
+
+    return this.http.get<any>(url)
+    .pipe(map(res => res.dados));
+  }
+
+  selecionarPorId(id: string): Observable<FormsConsultaViewModel> {
+    const url = `${this.CONSULTAS_API_URL}/${id}`;
 
     return this.http.get<any>(url)
     .pipe(map(res => res.dados));

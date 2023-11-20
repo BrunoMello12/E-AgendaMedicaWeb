@@ -7,30 +7,44 @@
 
         <form [formGroup]="form!" (ngSubmit)="gravar()" class="d-grid mt-4">
           <mat-form-field appearance="outline">
-            <mat-label>Nome</mat-label>
+            <mat-label>Titulo</mat-label>
             <input 
-            [ngClass]="campoEstaInvalido('nome') ? 'is-invalid' : ''" 
+            [ngClass]="campoEstaInvalido('titulo') ? 'is-invalid' : ''" 
             type="text" 
-            formControlName="nome" 
+            formControlName="titulo" 
             matInput />
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Telefone</mat-label>
+            <mat-label>Hora Início</mat-label>
             <input 
-            [ngClass]="campoEstaInvalido('telefone') ? 'is-invalid' : ''" 
+            [ngClass]="campoEstaInvalido('horaInicio') ? 'is-invalid' : ''" 
             type="text" 
-            formControlName="telefone" 
+            formControlName="horaInicio" 
             matInput />
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>CRM</mat-label>
+            <mat-label>Hora Término</mat-label>
             <input 
-            [ngClass]="campoEstaInvalido('crm') ? 'is-invalid' : ''" 
-            type="text" 
-            formControlName="crm" 
-            matInput />
+              [ngClass]="campoEstaInvalido('horaTermino') ? 'is-invalid' : ''" 
+              type="text" 
+              formControlName="horaTermino" 
+              matInput 
+              placeholder="HH:mm"
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Médico</mat-label>
+            <mat-select formControlName="medicoId">
+              <mat-option
+                [value]="medico.id"
+                *ngFor="let medico of medicos$ | async"
+              >
+                {{ medico.nome }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
 
           <div class="d-flex justify-content-end gap-2 mt-5">
