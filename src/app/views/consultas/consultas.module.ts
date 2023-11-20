@@ -9,6 +9,7 @@ import { ListarConsultasComponent } from './listar-consultas/listar-consultas.co
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ConsultasService } from './services/consultas.service';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     SharedModule,
     MatRadioModule,
     MatSelectModule,
-  ]
+  ],
+  providers: [ConsultasService]
 })
 export class ConsultasModule { }

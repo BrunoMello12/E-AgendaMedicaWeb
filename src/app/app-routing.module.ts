@@ -14,6 +14,13 @@ const routes: Routes = [
         (m) => m.MedicosModule
       ),
   },
+  {
+    path: 'consultas',
+    loadChildren: () =>
+      import('./views/consultas/consultas.module').then(
+        (m) => m.ConsultasModule
+      ),
+  },
 ];
 
 @NgModule({

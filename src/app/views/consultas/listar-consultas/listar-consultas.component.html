@@ -1,1 +1,62 @@
-<p>listar-consultas works!</p>
+<div class="row justify-content-center">
+  <div class="col-md-11 d-grid gap-3 ps-0">
+    <h1 class="fs-2">Listar Consultas</h1>
+
+    <button
+      routerLink="/consultas/inserir"
+      mat-raised-button
+      class="me-auto py-4 px-5 fs-6"
+      color="primary"
+    >
+      <mat-icon>add</mat-icon>
+      Nova Consulta
+    </button>
+
+    <div class="row gap-3">
+      <mat-card
+        *ngFor="let consulta of consultas$ | async"
+        appCardHover
+        class="col-12 col-md-6 col-lg-4 col-xxl-3"
+      >
+        <mat-card-header>
+          <mat-card-title>
+            <span>{{ consulta.titulo }}</span>
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="mt-3 fs-6">
+          <span>Hora Início: {{ consulta.horaInicio }}</span>
+        </mat-card-content>
+
+        <mat-card-content class="mt-3 fs-6">
+          <span>Hora Término: {{ consulta.horaTermino }}</span>
+        </mat-card-content>
+
+        <mat-card-content class="mt-3 fs-6">
+          <span>Médico: {{ consulta.nomeMedico }}</span>
+        </mat-card-content>
+
+        <mat-card-actions class="pe-0" align="end">
+          <button
+            mat-icon-button
+            matTooltip="Editar"
+            color="primary"
+            routerLink="/consultas/editar/{{ consulta.id }}"
+          >
+            <mat-icon>edit_note</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            matTooltip="Excluir"
+            color="warn"
+            routerLink="/consultas/excluir/{{ consulta.id }}"
+          >
+            <mat-icon>delete_sweep</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+
