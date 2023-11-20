@@ -15,5 +15,6 @@ export class ListarCirurgiaComponent {
 
   ngOnInit(): void {
     this.cirurgias$ = this.route.data.pipe(map(dados => dados['cirurgias']));
+    console.log(this.route.data.pipe(map(dados => dados['cirurgias'])))
   }
 }

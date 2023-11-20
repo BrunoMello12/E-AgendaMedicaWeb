@@ -9,6 +9,8 @@ import { ListarCirurgiaComponent } from './listar-cirurgia/listar-cirurgia.compo
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CirurgiasService } from './services/cirurgias.service';
+import { MedicosService } from '../medicos/services/medicos.service';
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     SharedModule,
     MatRadioModule,
     MatSelectModule,
-  ]
+  ],
+  providers: [CirurgiasService, MedicosService]
 })
 export class CirurgiasModule { }

@@ -10,7 +10,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MedicosService } from '../medicos/services/medicos.service';
-import { CirurgiasService } from '../cirurgias/services/cirurgias.service';
+import { ConsultasService } from './services/consultas.service';
 
 
 @NgModule({
@@ -27,6 +27,6 @@ import { CirurgiasService } from '../cirurgias/services/cirurgias.service';
     MatRadioModule,
     MatSelectModule,
   ],
-  providers: [CirurgiasService, MedicosService]
+  providers: [ConsultasService, MedicosService]
 })
 export class ConsultasModule { }
