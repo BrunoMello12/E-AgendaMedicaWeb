@@ -21,6 +21,13 @@ const routes: Routes = [
         (m) => m.ConsultasModule
       ),
   },
+  {
+    path: 'cirurgias',
+    loadChildren: () =>
+      import('./views/cirurgias/cirurgias.module').then(
+        (m) => m.CirurgiasModule
+      ),
+  },
 ];
 
 @NgModule({

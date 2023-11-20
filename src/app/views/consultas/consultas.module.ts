@@ -9,8 +9,8 @@ import { ListarConsultasComponent } from './listar-consultas/listar-consultas.co
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ConsultasService } from './services/consultas.service';
 import { MedicosService } from '../medicos/services/medicos.service';
+import { CirurgiasService } from '../cirurgias/services/cirurgias.service';
 
 
 @NgModule({
@@ -27,6 +27,6 @@ import { MedicosService } from '../medicos/services/medicos.service';
     MatRadioModule,
     MatSelectModule,
   ],
-  providers: [ConsultasService, MedicosService]
+  providers: [CirurgiasService, MedicosService]
 })
 export class ConsultasModule { }
