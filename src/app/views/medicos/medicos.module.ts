@@ -8,8 +8,6 @@ import { InserirMedicoComponent } from './inserir-medico/inserir-medico.componen
 import { ListarMedicosComponent } from './listar-medicos/listar-medicos.component';
 import { MedicosService } from './services/medicos.service';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatSelectModule } from '@angular/material/select';
 import 'src/app/extensions/form-group.extensions';
 
 
@@ -24,8 +22,6 @@ import 'src/app/extensions/form-group.extensions';
     CommonModule,
     MedicosRoutingModule,
     SharedModule,
-    MatRadioModule,
-    MatSelectModule,
   ],
   providers: [MedicosService]
 })

@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { tap, map } from 'rxjs';
 import { FormsMedicoViewModel } from '../models/formsMedicoViewModel';
 import { MedicosService } from '../services/medicos.service';
+import { NotificationService } from 'src/app/core/notification/services/notification.service';
 
 @Component({
   selector: 'app-editar-medico',
@@ -17,7 +16,7 @@ export class EditarMedicoComponent {
 
   constructor(private formBuilder: FormBuilder,
     private medicosService: MedicosService,
-    private toastrService: ToastrService,
+    private notification: NotificationService,
     private router: Router,
     private route: ActivatedRoute) {}
 
@@ -29,7 +28,6 @@ export class EditarMedicoComponent {
     })
 
     const medico = this.route.snapshot.data['medico'];
-    console.log(medico);
 
     this.form.patchValue(medico);
   }
@@ -41,7 +39,7 @@ export class EditarMedicoComponent {
   gravar(){
     if(this.form?.invalid){
       for(let erro of this.form.validate()) {
-        this.toastrService.warning(erro);
+        this.notification.erro(erro);
       }
 
       return;
@@ -52,17 +50,19 @@ export class EditarMedicoComponent {
     const id = this.route.snapshot.paramMap.get('id')!;
 
     this.medicosService.editar(id, this.form?.value).subscribe({
-      next: (medico: FormsMedicoViewModel) => this.processarSucesso(medico),
+      next: () => this.processarSucesso(),
       error: (err: Error) => this.processarFalha(err),
     });
   }
 
-  processarSucesso(medico: FormsMedicoViewModel){
-    this.toastrService.success(`O medico ${medico.nome} foi cadastrado com sucesso!`, 'Sucesso')
+  processarSucesso(){
+    this.notification.sucesso(
+      `O médico ${this.medicoVM.nome} foi editado com sucesso!`
+    );
     this.router.navigate(['/medicos/listar'])
   }
 
-  processarFalha(erro: Error){
-    this.toastrService.error(`${erro.message}`,'Error')
+  processarFalha(err: any) {
+    this.notification.erro(err.mensagem);
   }
 }

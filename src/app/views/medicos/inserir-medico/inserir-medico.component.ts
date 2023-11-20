@@ -4,6 +4,7 @@ import { MedicosService } from '../services/medicos.service';
 import { FormsMedicoViewModel } from '../models/formsMedicoViewModel';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NotificationService } from 'src/app/core/notification/services/notification.service';
 
 @Component({
   selector: 'app-inserir-medico',
@@ -16,7 +17,7 @@ export class InserirMedicoComponent {
 
   constructor(private formBuilder: FormBuilder,
     private medicosService: MedicosService,
-    private toastrService: ToastrService,
+    private notification: NotificationService,
     private router: Router) {}
 
   ngOnInit(): void {
@@ -34,7 +35,7 @@ export class InserirMedicoComponent {
   gravar(){
     if(this.form?.invalid){
       for(let erro of this.form.validate()) {
-        this.toastrService.warning(erro);
+        this.notification.erro(erro);
       }
 
       return;
@@ -43,18 +44,20 @@ export class InserirMedicoComponent {
     this.medicoVM = this.form.value;
 
     this.medicosService.criar(this.medicoVM).subscribe({
-      next: (medico: FormsMedicoViewModel) => this.processarSucesso(medico),
+      next: () => this.processarSucesso(),
       error: (err: Error) => this.processarFalha(err),
     });
   }
 
-  processarSucesso(medico: FormsMedicoViewModel){
-    this.toastrService.success(`O medico ${medico.nome} foi cadastrado com sucesso!`, 'Sucesso')
+  processarSucesso(){
+    this.notification.sucesso(
+      `O médico ${this.medicoVM.nome} foi inserido com sucesso!`
+    );
     this.router.navigate(['/medicos/listar'])
   }
 
-  processarFalha(erro: Error){
-    this.toastrService.error(`${erro.message}`,'Error')
+  processarFalha(err: any) {
+    this.notification.erro(err.mensagem);
   }
 }
 
