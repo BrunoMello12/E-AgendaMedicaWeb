@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { NotificationService } from 'src/app/core/notification/services/notification.service';
@@ -15,7 +15,7 @@ import { FormsCirurgiaViewModel } from '../models/FormsCirurgiaViewModel';
 export class InserirCirurgiaComponent {
   form!: FormGroup;
   cirurgiaVM!: FormsCirurgiaViewModel;
-  medicos$?: Observable<ListarMedicoViewModel[]>;
+  ListaMedicos$?: Observable<ListarMedicoViewModel[]>;
 
   constructor(private formBuilder: FormBuilder,
     private cirurgiasService: CirurgiasService,
@@ -28,10 +28,10 @@ export class InserirCirurgiaComponent {
       titulo: new FormControl('', [Validators.required]),
       horaInicio: new FormControl('', [Validators.required]),
       horaTermino: new FormControl('', [Validators.required]),
-      medicoIds: new FormControl('', [Validators.required]),
+      medicosSelecionados: [[]]
     })
 
-    this.medicos$ = this.route.data.pipe(map(dados => dados['medicos']));
+    this.ListaMedicos$ = this.route.data.pipe(map(dados => dados['medicos']));
   }
 
   campoEstaInvalido(nome: string){

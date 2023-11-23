@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CirurgiasService } from './services/cirurgias.service';
 import { MedicosService } from '../medicos/services/medicos.service';
+import { VisualizarMedicoCirurgiaComponent } from './visualizar-medico-cirurgia/visualizar-medico-cirurgia.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MedicosService } from '../medicos/services/medicos.service';
     InserirCirurgiaComponent,
     EditarCirurgiaComponent,
     ExcluirCirurgiaComponent,
-    ListarCirurgiaComponent
+    ListarCirurgiaComponent,
+    VisualizarMedicoCirurgiaComponent
   ],
   imports: [
     CommonModule,

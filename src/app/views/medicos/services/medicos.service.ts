@@ -37,6 +37,6 @@ private MEDICOS_API_URL = `${environment.API_URL}/medicos`;
 
   selecionarTodos(): Observable<ListarMedicoViewModel[]> {
     return this.http.get<any>(this.MEDICOS_API_URL)
-    .pipe(map(res => res.dados));
+    .pipe(map(res => res.dados),tap(x => console.log(x)));
   }
 }

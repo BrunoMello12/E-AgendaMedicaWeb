@@ -1,1 +1,63 @@
-<p>excluir-cirurgia works!</p>
+<div class="row justify-content-center align-items-center mt-5">
+  <div class="col-md-5">
+    <h1 class="fs-2 indigo-pink-text">Excluir Cirurgia</h1>
+
+    <p class="fs-5">Você tem certeza que deseja excluir a seguinte cirurgia?</p>
+
+    <mat-list *ngIf="cirurgia$ | async as cirurgia">
+      <mat-list-item>
+        <div class="d-flex justify-content-between">
+          <span>Id:</span>
+          <span>{{cirurgia.id}}</span>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <div class="d-flex justify-content-between">
+          <span>Titulo:</span>
+          <span>{{cirurgia.titulo}}</span>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <div class="d-flex justify-content-between">
+          <span>Hora Início:</span>
+          <span
+            >{{cirurgia.horaInicio}}</span
+          >
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <div class="d-flex justify-content-between">
+          <span>Hora Término:</span>
+          <span>{{cirurgia.horaTermino}}</span>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item >
+        <div class="d-flex justify-content-between">
+          <span>Medicos:</span>
+          <span *ngFor="let medico of cirurgia.medicos">{{ medico.nome }}</span>
+        </div>
+      </mat-list-item>
+    </mat-list>
+
+    <div class="d-flex justify-content-end gap-2 mt-5">
+      <button class="py-3 px-5" color="warn" mat-raised-button (click)="confirmar()">
+        Confirmar
+      </button>
+      <button
+        routerLink="/consultas/listar"
+        class="py-3 px-5"
+        color="primary"
+        mat-stroked-button
+      >
+        Voltar
+      </button>
+    </div>
+  </div>
+</div>
+
+
+

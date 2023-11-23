@@ -37,13 +37,13 @@
 
           <mat-form-field appearance="outline">
             <mat-label>Médicos</mat-label>
-            <mat-select formControlName="medicoIds" multiple>
-              <mat-option *ngFor="let medico of (medicos$ | async)" [value]="medico.id">
+            <mat-select formControlName="medicosSelecionados" multiple>
+              <mat-option *ngFor="let medico of (ListaMedicos$ | async)" [value]="medico.id">
                 {{ medico.nome }}
               </mat-option>
             </mat-select>
           </mat-form-field>
-
+          
           <div class="d-flex justify-content-end gap-2 mt-5">
             <button
               type="submit"
@@ -55,7 +55,7 @@
             </button>
             <button
               type="button"
-              routerLink="/medicos/listar"
+              routerLink="/cirurgias/listar"
               class="py-3 px-5"
               color="warn"
               mat-stroked-button

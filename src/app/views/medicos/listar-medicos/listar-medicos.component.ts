@@ -15,6 +15,5 @@ export class ListarMedicosComponent {
 
   ngOnInit(): void {
     this.medicos$ = this.route.data.pipe(map(dados => dados['medicos']));
-    console.log(this.medicos$);
   }
 }

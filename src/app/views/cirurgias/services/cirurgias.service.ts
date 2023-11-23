@@ -5,6 +5,7 @@ import { Observable, map, tap } from "rxjs";
 import { FormsCirurgiaViewModel } from "../models/FormsCirurgiaViewModel";
 import { VisualizarCirurgiaViewModel } from "../models/VisualizarCirurgiaViewModel";
 import { ListarCirurgiaViewModel } from "../models/ListarCirurgiaViewModel";
+import { ListarMedicoViewModel } from "../../medicos/models/listarMedicoViewModel";
 
 
 @Injectable()
@@ -45,6 +46,13 @@ private CIRURGIAS_API_URL = `${environment.API_URL}/cirurgias`;
 
   selecionarTodos(): Observable<ListarCirurgiaViewModel[]> {
     return this.http.get<any>(this.CIRURGIAS_API_URL)
-    .pipe(map(res => res.dados));
+    .pipe(map(res => res.dados), tap(x => console.log(x)));
+  }
+
+  selecionarTodosMedicosCirurgias(id: string): Observable<ListarMedicoViewModel[]> {
+    const url = `${this.CIRURGIAS_API_URL}/medicos/${id}`;
+
+    return this.http.get<any>(url)
+    .pipe(map(res => res.dados), tap(x => console.log(x)));
   }
 }
