@@ -9,6 +9,8 @@ import { ListarMedicosComponent } from './listar-medicos/listar-medicos.componen
 import { MedicosService } from './services/medicos.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import 'src/app/extensions/form-group.extensions';
+import { VisualizarConsultasMedicoComponent } from './visualizar-consultas-medico/visualizar-consultas-medico.component';
+import { VisualizarCirurgiasMedicoComponent } from './visualizar-cirurgias-medico/visualizar-cirurgias-medico.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import 'src/app/extensions/form-group.extensions';
     InserirMedicoComponent,
     EditarMedicoComponent,
     ExcluirMedicoComponent,
-    ListarMedicosComponent
+    ListarMedicosComponent,
+    VisualizarConsultasMedicoComponent,
+    VisualizarCirurgiasMedicoComponent
   ],
   imports: [
     CommonModule,

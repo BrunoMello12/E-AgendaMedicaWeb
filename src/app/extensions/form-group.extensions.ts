@@ -25,6 +25,15 @@ FormGroup.prototype.validate = function () {
         case 'email':
           erros.push(`O campo ${campo} deve seguir um formato válido`);
           break;
+
+        case 'pattern':
+          if (campo === 'telefone') {
+            erros.push(`O campo ${campo} deve estar no formato correto!`);
+          }
+          else if (campo === 'crm') {
+            erros.push(`O campo ${campo} deve estar no formato correto!`);
+          }
+            break;
       }
     }
   }

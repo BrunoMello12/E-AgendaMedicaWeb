@@ -23,8 +23,8 @@ export class EditarMedicoComponent {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       nome: new FormControl('', [Validators.required]),
-      telefone: new FormControl('', [Validators.required]),
-      crm: new FormControl('', [Validators.required]),
+      telefone: new FormControl('', [Validators.required, Validators.pattern(/^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/)]),
+      crm: new FormControl('', [Validators.required, Validators.pattern(/^\d{5}-[A-Z]{2}$/)]),
     })
 
     const medico = this.route.snapshot.data['medico'];

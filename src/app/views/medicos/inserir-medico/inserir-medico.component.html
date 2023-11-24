@@ -21,7 +21,8 @@
             [ngClass]="campoEstaInvalido('telefone') ? 'is-invalid' : ''" 
             type="text" 
             formControlName="telefone" 
-            matInput />
+            matInput
+            placeholder="ex: (49) 99999-9999" />
           </mat-form-field>
 
           <mat-form-field appearance="outline">
@@ -30,7 +31,8 @@
             [ngClass]="campoEstaInvalido('crm') ? 'is-invalid' : ''" 
             type="text" 
             formControlName="crm" 
-            matInput />
+            matInput
+            placeholder="ex: 12345-SC" />
           </mat-form-field>
 
           <div class="d-flex justify-content-end gap-2 mt-5">

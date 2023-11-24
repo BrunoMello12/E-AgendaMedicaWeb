@@ -28,7 +28,7 @@ const formsCirurgiaResolver: ResolveFn<FormsCirurgiaViewModel> = (
 const visualizarCirurgiaResolver = (
   route: ActivatedRouteSnapshot
 ) => {
-  return inject(CirurgiasService).selecionarTodosMedicosCirurgias(
+  return inject(CirurgiasService).selecionarPorIdCompleto(
     route.paramMap.get('id')!
   );
 };

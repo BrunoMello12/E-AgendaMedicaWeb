@@ -14,12 +14,16 @@
       <mat-card-content class="mt-3 fs-6">
         <span>Situação: {{ medico.disponivel ? "Disponível" : "Indisponível" }}</span>
       </mat-card-content>
+
+      <mat-card-content class="mt-3 fs-6">
+        <span>CRM: {{ medico.crm }}</span>
+      </mat-card-content>
     </mat-card>
   </ng-container>
 </div>
 
 <ng-template #semMedicos>
-  <p>Não há médicos disponíveis no momento.</p>
+  <p class="fs-5">Não há médicos disponíveis no momento.</p>
 </ng-template>
 
 <button type="button" routerLink="/cirurgias/listar" class="py-3 px-5 mt-3" color="warn" mat-stroked-button>
