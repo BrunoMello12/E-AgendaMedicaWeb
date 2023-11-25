@@ -21,6 +21,13 @@
       <mat-divider></mat-divider>
       <mat-list-item>
         <div class="d-flex justify-content-between">
+          <span>Data:</span>
+          <span>{{cirurgia.data | date: 'dd/MM/yyyy'}}</span>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <div class="d-flex justify-content-between">
           <span>Hora Início:</span>
           <span
             >{{cirurgia.horaInicio}}</span

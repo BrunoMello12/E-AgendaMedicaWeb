@@ -26,6 +26,7 @@ export class InserirCirurgiaComponent {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       titulo: new FormControl('', [Validators.required]),
+      data: new FormControl('', [Validators.required]),
       horaInicio: new FormControl('', [Validators.required]),
       horaTermino: new FormControl('', [Validators.required]),
       medicosSelecionados: [[]]

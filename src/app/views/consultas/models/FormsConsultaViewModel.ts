@@ -2,6 +2,7 @@ import { VisualizarMedicoViewModel } from "../../medicos/models/visualizarMedico
 
 export type FormsConsultaViewModel = {
   titulo: string;
+  data: Date;
   horaInicio: Date;
   horaTermino: Date;
   medico: VisualizarMedicoViewModel;

@@ -2,6 +2,7 @@ import { ListarMedicoViewModel } from "../../medicos/models/listarMedicoViewMode
 
 export type FormsCirurgiaViewModel = {
   titulo: string;
+  data: Date;
   horaInicio: Date;
   horaTermino: Date;
   medicosSelecionados: string[];

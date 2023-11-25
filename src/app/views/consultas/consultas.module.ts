@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { ConsultasRoutingModule } from './consultas-routing.module';
 import { InserirConsultaComponent } from './inserir-consulta/inserir-consulta.component';
@@ -8,6 +8,9 @@ import { ExcluirConsultaComponent } from './excluir-consulta/excluir-consulta.co
 import { ListarConsultasComponent } from './listar-consultas/listar-consultas.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MedicosService } from '../medicos/services/medicos.service';
 import { ConsultasService } from './services/consultas.service';
@@ -27,6 +30,6 @@ import { ConsultasService } from './services/consultas.service';
     MatRadioModule,
     MatSelectModule,
   ],
-  providers: [ConsultasService, MedicosService]
+  providers: [ConsultasService, MedicosService, DatePipe]
 })
 export class ConsultasModule { }

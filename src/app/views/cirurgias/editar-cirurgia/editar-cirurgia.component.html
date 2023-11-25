@@ -16,6 +16,20 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
+            <mat-label>Data</mat-label>
+            <input
+              [ngClass]="campoEstaInvalido('data') ? 'is-invalid' : ''"
+              type="text"
+              formControlName="data"
+              matInput
+              [matDatepicker]="picker"
+              placeholder="Escolha uma data"
+            />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
             <mat-label>Hora Início</mat-label>
             <input 
             [ngClass]="campoEstaInvalido('horaInicio') ? 'is-invalid' : ''" 

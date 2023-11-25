@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -24,6 +26,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatTooltipModule,
     MatInputModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule
   ],
 })
 export class SharedModule { }

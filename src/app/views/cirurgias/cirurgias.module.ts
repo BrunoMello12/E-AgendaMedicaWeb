@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { CirurgiasRoutingModule } from './cirurgias-routing.module';
 import { InserirCirurgiaComponent } from './inserir-cirurgia/inserir-cirurgia.component';
@@ -29,6 +29,6 @@ import { VisualizarMedicoCirurgiaComponent } from './visualizar-medico-cirurgia/
     MatRadioModule,
     MatSelectModule,
   ],
-  providers: [CirurgiasService, MedicosService]
+  providers: [CirurgiasService, MedicosService, DatePipe]
 })
 export class CirurgiasModule { }
