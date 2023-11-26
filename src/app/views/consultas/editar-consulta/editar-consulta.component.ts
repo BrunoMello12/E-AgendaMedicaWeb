@@ -63,7 +63,7 @@ export class EditarConsultaComponent {
 
   processarSucesso(){
     this.notification.sucesso(
-      `A consulta ${this.consultaVM.titulo} foi inserida com sucesso!`
+      `A consulta ${this.consultaVM.titulo} foi editada com sucesso!`
     );
     this.router.navigate(['/consultas/listar'])
   }

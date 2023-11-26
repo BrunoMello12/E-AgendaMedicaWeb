@@ -50,6 +50,11 @@ export class InserirCirurgiaComponent {
 
     this.cirurgiaVM = this.form.value;
 
+    if(this.cirurgiaVM.medicosSelecionados.length == 0){
+      this.notification.erro("É necessário ter pelo menos um médico!");
+      return;
+    }
+
     this.cirurgiasService.criar(this.cirurgiaVM).subscribe({
       next: () => this.processarSucesso(),
       error: (err: Error) => this.processarFalha(err),
@@ -64,6 +69,6 @@ export class InserirCirurgiaComponent {
   }
 
   processarFalha(err: any) {
-    this.notification.erro(err.mensagem);
+    this.notification.erro(err.error.erros);
   }
 }

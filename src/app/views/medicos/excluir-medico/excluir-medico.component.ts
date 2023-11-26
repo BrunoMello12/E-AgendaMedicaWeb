@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, forkJoin, map, pipe } from 'rxjs';
 import { VisualizarMedicoViewModel } from '../models/visualizarMedicoViewModel';
 import { MedicosService } from '../services/medicos.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { NotificationService } from 'src/app/core/notification/services/notifica
 @Component({
   selector: 'app-excluir-medico',
   templateUrl: './excluir-medico.component.html',
-  styleUrls: ['./excluir-medico.component.scss']
+  styleUrls: ['./excluir-medico.component.scss'],
 })
 export class ExcluirMedicoComponent {
   medico$?: Observable<VisualizarMedicoViewModel>;
@@ -26,17 +26,30 @@ export class ExcluirMedicoComponent {
 
   confirmar(): void {
     const id = this.route.snapshot.paramMap.get('id')!;
-
-    this.medicosService.excluir(id).subscribe({
-      next: () => this.processarSucesso(),
-      error: (err) => this.processarFalha(err),
+  
+    const consultas$ = this.medicosService.selecionarConsultasMedico(id);
+    const cirurgias$ = this.medicosService.selecionarCirurgiasMedico(id);
+  
+    forkJoin([consultas$, cirurgias$]).subscribe(([consultas, cirurgias]) => {
+      if (consultas.length > 0) {
+        this.notification.erro('O médico possui consultas agendadas, tente novamente mais tarde!');
+        return;
+      }
+  
+      if (cirurgias.length > 0) {
+        this.notification.erro('O médico possui cirurgias agendadas, tente novamente mais tarde!');
+        return;
+      }
+  
+      this.medicosService.excluir(id).subscribe({
+        next: () => this.processarSucesso(),
+        error: (err) => this.processarFalha(err),
+      });
     });
   }
 
   processarSucesso() {
-    this.notification.sucesso(
-      `O médico foi excluído com sucesso!`
-    );
+    this.notification.sucesso(`O médico foi excluído com sucesso!`);
 
     this.router.navigate(['/medicos/listar']);
   }

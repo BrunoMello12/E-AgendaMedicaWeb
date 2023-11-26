@@ -64,6 +64,6 @@ export class InserirConsultaComponent {
   }
 
   processarFalha(err: any) {
-    this.notification.erro(err.mensagem);
+    this.notification.erro(err.error.erros);
   }
 }

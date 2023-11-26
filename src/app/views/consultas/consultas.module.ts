@@ -8,12 +8,10 @@ import { ExcluirConsultaComponent } from './excluir-consulta/excluir-consulta.co
 import { ListarConsultasComponent } from './listar-consultas/listar-consultas.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MedicosService } from '../medicos/services/medicos.service';
 import { ConsultasService } from './services/consultas.service';
+import 'src/app/extensions/form-group.extensions';
 
 
 @NgModule({

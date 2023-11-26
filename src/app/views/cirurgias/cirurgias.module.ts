@@ -12,6 +12,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CirurgiasService } from './services/cirurgias.service';
 import { MedicosService } from '../medicos/services/medicos.service';
 import { VisualizarMedicoCirurgiaComponent } from './visualizar-medico-cirurgia/visualizar-medico-cirurgia.component';
+import 'src/app/extensions/form-group.extensions';
 
 
 @NgModule({
