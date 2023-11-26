@@ -3,5 +3,4 @@ export type ListarMedicoViewModel = {
   nome: string;
   telefone: string;
   crm: string;
-  disponivel: boolean;
 }
