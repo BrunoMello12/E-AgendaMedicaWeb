@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  API_URL: 'https://e-agendamedicaapi.onrender.com/api',
+  API_URL: 'https://e-agendamedica-api.onrender.com/api',
 };
