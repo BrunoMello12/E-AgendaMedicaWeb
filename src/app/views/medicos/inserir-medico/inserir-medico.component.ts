@@ -57,7 +57,11 @@ export class InserirMedicoComponent {
   }
 
   processarFalha(err: any) {
-    this.notification.erro(err.mensagem);
+    if(err.error.erros == "'Telefone' is not in the correct format."){
+      this.notification.erro('O campo telefone deve estar no formato correto!')
+    }else{
+      this.notification.erro(err.error.erros);
+    }
   }
 }
 

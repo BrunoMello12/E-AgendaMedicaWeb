@@ -19,7 +19,7 @@ FormGroup.prototype.validate = function () {
     for (let erro of Object.keys(controle.errors)) {
       switch (erro) {
         case 'required':
-          erros.push(`O campo ${campo} é obrigatório`);
+          erros.push(campo === 'medicoId' ? 'É necessário ter um médico!' : `O campo ${campo} é obrigatório`);
           break;
 
         case 'email':
