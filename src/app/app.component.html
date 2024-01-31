@@ -1,3 +1,4 @@
+<app-loading *ngIf="(estaCarregando$ | async) == true"></app-loading>
 <app-shell>
   <router-outlet></router-outlet>
 </app-shell>
