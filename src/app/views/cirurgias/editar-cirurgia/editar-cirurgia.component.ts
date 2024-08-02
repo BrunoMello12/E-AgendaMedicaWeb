@@ -68,6 +68,10 @@ export class EditarCirurgiaComponent {
   }
 
   processarFalha(err: any) {
-    this.notification.erro(err.mensagem);
-  }
+    if (err.error.erros && err.error.erros.length > 0) {
+        this.notification.erro(err.error.erros[0]);
+    } else {
+        this.notification.erro('Ocorreu um erro inesperado.');
+    }
+}
 }
