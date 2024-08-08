@@ -24,6 +24,7 @@
       <span class="d-flex align-items-center gap-2 m-3">E-Agenda Médica<mat-icon>collections_bookmark</mat-icon></span>
 
       <button
+       *ngIf="(usuarioEstaLogado$ | async)"
         mat-raised-button
         (click)="logout()"
         color="accent" class="background">
