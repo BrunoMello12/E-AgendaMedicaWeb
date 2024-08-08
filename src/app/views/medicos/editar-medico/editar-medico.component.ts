@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsMedicoViewModel } from '../models/formsMedicoViewModel';
 import { MedicosService } from '../services/medicos.service';
 import { NotificationService } from 'src/app/core/notification/services/notification.service';
+import { LocalStorageService } from 'src/app/core/auth/services/local-storage.service';
 
 @Component({
   selector: 'app-editar-medico',
@@ -13,12 +14,14 @@ import { NotificationService } from 'src/app/core/notification/services/notifica
 export class EditarMedicoComponent {
   form!: FormGroup;
   medicoVM!: FormsMedicoViewModel;
+  userId: string | undefined;
 
   constructor(private formBuilder: FormBuilder,
     private medicosService: MedicosService,
     private notification: NotificationService,
     private router: Router,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute,
+    private localStorage: LocalStorageService) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -30,6 +33,8 @@ export class EditarMedicoComponent {
     const medico = this.route.snapshot.data['medico'];
 
     this.form.patchValue(medico);
+
+    this.userId = this.localStorage.obterIdUsuario();
   }
 
   campoEstaInvalido(nome: string){
@@ -48,6 +53,13 @@ export class EditarMedicoComponent {
     this.medicoVM = this.form.value;
 
     const id = this.route.snapshot.paramMap.get('id')!;
+
+    if (!this.userId) {
+      this.notification.erro('ID do usuário não encontrado.');
+      return;
+    }
+
+    this.medicoVM.usuarioId = this.userId;
 
     this.medicosService.editar(id, this.form?.value).subscribe({
       next: () => this.processarSucesso(),

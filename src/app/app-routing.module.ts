@@ -1,11 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { authGuard } from './core/auth/guards/auth.guard';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full',
+  },
+  {
+    path: '',
+    component: DashboardComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'medicos',
@@ -13,6 +20,7 @@ const routes: Routes = [
       import('./views/medicos/medicos.module').then(
         (m) => m.MedicosModule
       ),
+      canActivate: [authGuard],
   },
   {
     path: 'consultas',
@@ -20,6 +28,7 @@ const routes: Routes = [
       import('./views/consultas/consultas.module').then(
         (m) => m.ConsultasModule
       ),
+      canActivate: [authGuard],
   },
   {
     path: 'cirurgias',
@@ -27,6 +36,7 @@ const routes: Routes = [
       import('./views/cirurgias/cirurgias.module').then(
         (m) => m.CirurgiasModule
       ),
+      canActivate: [authGuard],
   },
 ];
 

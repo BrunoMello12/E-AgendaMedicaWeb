@@ -6,6 +6,7 @@ import { FormsConsultaViewModel } from '../models/FormsConsultaViewModel';
 import { ConsultasService } from '../services/consultas.service';
 import { Observable, map } from 'rxjs';
 import { ListarMedicoViewModel } from '../../medicos/models/listarMedicoViewModel';
+import { LocalStorageService } from 'src/app/core/auth/services/local-storage.service';
 
 @Component({
   selector: 'app-inserir-consulta',
@@ -16,12 +17,14 @@ export class InserirConsultaComponent {
   form!: FormGroup;
   consultaVM!: FormsConsultaViewModel;
   medicos$?: Observable<ListarMedicoViewModel[]>;
+  userId: string | undefined;
 
   constructor(private formBuilder: FormBuilder,
     private consultasService: ConsultasService,
     private notification: NotificationService,
     private router: Router,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute,
+    private localStorage: LocalStorageService) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -33,6 +36,7 @@ export class InserirConsultaComponent {
     })
 
     this.medicos$ = this.route.data.pipe(map(dados => dados['medicos']));
+    this.userId = this.localStorage.obterIdUsuario();
   }
 
   campoEstaInvalido(nome: string){
@@ -49,6 +53,13 @@ export class InserirConsultaComponent {
     }
 
     this.consultaVM = this.form.value;
+
+    if (!this.userId) {
+      this.notification.erro('ID do usuário não encontrado.');
+      return;
+    }
+  
+    this.consultaVM.usuarioId = this.userId;
 
     this.consultasService.criar(this.consultaVM).subscribe({
       next: () => this.processarSucesso(),

@@ -7,4 +7,5 @@ export type FormsConsultaViewModel = {
   horaTermino: Date;
   medico: VisualizarMedicoViewModel;
   medicoId: string;
+  usuarioId: string;
 }

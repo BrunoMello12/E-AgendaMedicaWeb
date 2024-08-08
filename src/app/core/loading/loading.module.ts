@@ -13,7 +13,7 @@ import { LoadingService } from './services/loading.service';
     CommonModule
   ],
   exports: [
-    LoadingComponent
+    LoadingComponent,
   ],
   providers: [
     LoadingService

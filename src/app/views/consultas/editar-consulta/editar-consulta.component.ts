@@ -6,6 +6,7 @@ import { NotificationService } from 'src/app/core/notification/services/notifica
 import { ListarMedicoViewModel } from '../../medicos/models/listarMedicoViewModel';
 import { ConsultasService } from '../services/consultas.service';
 import { FormsConsultaViewModel } from '../models/FormsConsultaViewModel';
+import { LocalStorageService } from 'src/app/core/auth/services/local-storage.service';
 
 @Component({
   selector: 'app-editar-consulta',
@@ -16,12 +17,14 @@ export class EditarConsultaComponent {
   form!: FormGroup;
   consultaVM!: FormsConsultaViewModel;
   medicos$?: Observable<ListarMedicoViewModel[]>;
+  userId: string | undefined;
 
   constructor(private formBuilder: FormBuilder,
     private consultasService: ConsultasService,
     private notification: NotificationService,
     private router: Router,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute,
+    private localStorage: LocalStorageService) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -36,6 +39,7 @@ export class EditarConsultaComponent {
     console.log(this.route.snapshot.data['consulta']);
 
     this.medicos$ = this.route.data.pipe(map(dados => dados['medicos']));
+    this.userId = this.localStorage.obterIdUsuario();
   }
 
   campoEstaInvalido(nome: string){
@@ -55,6 +59,15 @@ export class EditarConsultaComponent {
 
     const id = this.route.snapshot.paramMap.get('id')!;
 
+    this.consultaVM = this.form.value;
+
+    if (!this.userId) {
+      this.notification.erro('ID do usuário não encontrado.');
+      return;
+    }
+
+    this.consultaVM.usuarioId = this.userId;
+    
     this.consultasService.editar(id, this.consultaVM).subscribe({
       next: () => this.processarSucesso(),
       error: (err: Error) => this.processarFalha(err),

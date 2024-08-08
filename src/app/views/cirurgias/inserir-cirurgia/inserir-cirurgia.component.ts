@@ -6,6 +6,7 @@ import { NotificationService } from 'src/app/core/notification/services/notifica
 import { ListarMedicoViewModel } from '../../medicos/models/listarMedicoViewModel';
 import { CirurgiasService } from '../services/cirurgias.service';
 import { FormsCirurgiaViewModel } from '../models/FormsCirurgiaViewModel';
+import { LocalStorageService } from 'src/app/core/auth/services/local-storage.service';
 
 @Component({
   selector: 'app-inserir-cirurgia',
@@ -16,12 +17,14 @@ export class InserirCirurgiaComponent {
   form!: FormGroup;
   cirurgiaVM!: FormsCirurgiaViewModel;
   ListaMedicos$?: Observable<ListarMedicoViewModel[]>;
+  userId: string | undefined;
 
   constructor(private formBuilder: FormBuilder,
     private cirurgiasService: CirurgiasService,
     private notification: NotificationService,
     private router: Router,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute,
+    private localStorage: LocalStorageService) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -33,6 +36,8 @@ export class InserirCirurgiaComponent {
     })
 
     this.ListaMedicos$ = this.route.data.pipe(map(dados => dados['medicos']));
+
+    this.userId = this.localStorage.obterIdUsuario();
   }
 
   campoEstaInvalido(nome: string){
@@ -54,6 +59,13 @@ export class InserirCirurgiaComponent {
       this.notification.erro("É necessário ter pelo menos um médico!");
       return;
     }
+
+    if (!this.userId) {
+      this.notification.erro('ID do usuário não encontrado.');
+      return;
+    }
+  
+    this.cirurgiaVM.usuarioId = this.userId;
 
     this.cirurgiasService.criar(this.cirurgiaVM).subscribe({
       next: () => this.processarSucesso(),
